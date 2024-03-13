@@ -34,6 +34,15 @@ Lilly Koller
 
 ---
 
+# Mögliche Auswirkungen
+
+- Datenmanipulation
+    - Ausführung schädlicher Befehle (Löschen, Lesen, Bearbeiten) 
+- unbefugten Zugriffs auf vertrauliche Informationen
+- Beeinträchtigung der Systemsicherheit
+
+---
+
 # Beispiel Command Injection
 
 ```python
@@ -73,7 +82,7 @@ if __name__ == "__main__":
 # Wie kann man das verhindern?
 
 - Benutzereingabe client- und serverseitig validieren
-  - Command Injection kommt vorallem vor, wenn nur clientseitig validiert wird
+  - Nur clientseitige Validierung kann umgangen werden
 - Sonderzeichen aus Eingaben entfernen
 - Code mit den niedrigsten Berechtigungen ausführen
-- Bei z.B Dateinamen oder URLs validieren und unpassende Eingaben invalidieren
+- Bei z.B Dateinamen oder URLs validieren
