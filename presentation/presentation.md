@@ -39,13 +39,14 @@ Lilly Koller
 ```python
 import subprocess
 
-def execute_command(command):
-    subprocess.call(command, shell=True)
+def ping_host(ip_address):
+    command = "ping -c 4 " + ip_address
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return result.stdout
 
-user_input = input("Gib bitte dein Name ein: ")
-
-execute_command("echo " + "Hallo " + user_input)
-
+if __name__ == "__main__":
+    user_input = input("Geben Sie die IP-Adresse ein, die Sie pingen möchten: ")
+    print(ping_host(user_input))
 ```
 
 ---
@@ -55,13 +56,17 @@ execute_command("echo " + "Hallo " + user_input)
 ```python
 import subprocess
 
-def execute_command(command):
-    subprocess.call(command)
+def ping_host(ip_address):
+    command = ["ping", "-c", "4", ip_address]
+    result = subprocess.run(command, capture_output=True, text=True)
+    return result.stdout
 
-user_input = input("Gib bitte deinen Namen ein: ")
-
-execute_command(["echo", "Hallo " + user_input])
-
+if __name__ == "__main__":
+    user_input = input("Geben Sie die IP-Adresse ein, die Sie pingtesten möchten: ")
+    if not all(map(lambda x: x.isdigit() or x == '.', user_input)):
+        print("Ungültige IP-Adresse!")
+    else:
+        print(ping_host(user_input))
 ```
 
 ---

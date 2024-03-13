@@ -1,10 +1,13 @@
 import subprocess
 
-# Durch shell=True ist man anfälliger für Command Injection
-# Die Befehle werden in einer neuen Shell-Prozessinstanz ausgeführt, was bedeutet, dass die Eingabe möglicherweise als Shell-Befehl interpretiert wird
-def execute_command(command):
-    subprocess.call(command, shell=True)
+def ping_host(ip_address):
+    # Ein einzelner String wird an die subprocess.run Methode mitgegeben
+    command = "ping -c 4 " + ip_address
 
-user_input = input("Gib bitte dein Name ein: ")
+    # shell=True bedeutet, dass die Benutzereingabe direkt von der Shell interpretiert wird, ohne dass sie vorher sicher behandelt wird.
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return result.stdout
 
-execute_command("echo " + "Hallo " + user_input)
+if __name__ == "__main__":
+    user_input = input("Geben Sie die IP-Adresse ein, die Sie pingen möchten: ")
+    print(ping_host(user_input))

@@ -1,11 +1,18 @@
 import subprocess
 
-# shell=False ist der Standartwert. 
-# Der Befehl wird direkt als ausführbares Programm behandelt, ohne von der Shell interpretiert zu werden
-def execute_command(command):
-    subprocess.call(command)
+def ping_host(ip_address):
+    # Es wird eine Liste an die subprocess.run Methode übergeben
+    command = ["ping", "-c", "4", ip_address]
 
-user_input = input("Gib bitte deinen Namen ein: ")
+    # shell=False ist der Default Wert. Dadurch wird die Benutzereingabe nicht mehr von der Shell interpretiert, sondern direkt als Liste von Befehlsargumenten behandelt.
+    result = subprocess.run(command, capture_output=True, text=True)
+    return result.stdout
 
-# Die beiden Textketten werden miteinander kombiniert. Es wird als Liste übergeben, damit nicht der ganze String von der Shell interpretiert wird
-execute_command(["echo", "Hallo " + user_input])
+if __name__ == "__main__":
+    user_input = input("Geben Sie die IP-Adresse ein, die Sie pingtesten möchten: ")
+
+    # Zusätzlich wurde eine einfache Validierung implementiert, um sicherzustellen, dass die Benutzereingabe eine gültige IP-Adresse ist, um potenzielle Angriffe weiter zu erschweren.
+    if not all(map(lambda x: x.isdigit() or x == '.', user_input)):
+        print("Ungültige IP-Adresse!")
+    else:
+        print(ping_host(user_input))
