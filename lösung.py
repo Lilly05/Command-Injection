@@ -21,6 +21,6 @@ if __name__ == "__main__":
 """
 - Benutzereingabe client- und serverseitig validieren
     - Nur clientseitige Validierung kann umgangen werden
-- Sonderzeichen aus Eingaben entfernen
+- Sonderzeichen validieren/ entfernen
 - Code mit den niedrigsten Berechtigungen ausführen 
 """
