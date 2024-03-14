@@ -18,18 +18,9 @@ Lilly Koller
 # Was ist Command Injection?
 
 - Befehle können eingeschleust werden
-- Anwendungen und Daten können kompromittiert werden
-  - Kompromittiert: Daten wurden manipuliert und/ oder Systeme wurden von einer externen Quelle beeinflusst
-- Angreifer können Zugriff oder Kontrolle für die Anwendung/ Server erhalten
-
----
-
-# Wie funktioniert Command Injection?
-
-- Meistens per Benutzereingabe
+    - Meistens per Benutzereingabe
 - Unsichere Daten werden übergeben
   - Formulare, Cookies, HTTP-Header u.s.w
-- Keine/ Nicht genügend Eingabevalidierung
 - Befehle werden mit den Berechtigungen der verwundbaren Anwendung ausgeführt
 
 ---
@@ -39,7 +30,8 @@ Lilly Koller
 - Datenmanipulation
     - Ausführung schädlicher Befehle (Löschen, Lesen, Bearbeiten) 
 - unbefugten Zugriffs auf vertrauliche Informationen
-- Beeinträchtigung der Systemsicherheit
+- Angreifer können Kontrolle über das System übernehmen
+- Rechte/ Privilegien verändern
 
 ---
 
@@ -78,11 +70,3 @@ if __name__ == "__main__":
         print(ping_host(user_input))
 ```
 
----
-# Wie kann man das verhindern?
-
-- Benutzereingabe client- und serverseitig validieren
-  - Nur clientseitige Validierung kann umgangen werden
-- Sonderzeichen aus Eingaben entfernen
-- Code mit den niedrigsten Berechtigungen ausführen
-- Bei z.B Dateinamen oder URLs validieren

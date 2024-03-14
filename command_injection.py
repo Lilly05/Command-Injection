@@ -4,7 +4,7 @@ def ping_host(ip_address):
     # Ein einzelner String wird an die subprocess.run Methode mitgegeben
     command = "ping -c 4 " + ip_address
 
-    # shell=True bedeutet, dass die Benutzereingabe direkt von der Shell interpretiert wird, ohne dass sie vorher sicher behandelt wird.
+    # shell=True bedeutet, dass die Benutzereingabe direkt von der Shell interpretiert wird
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     return result.stdout
 
